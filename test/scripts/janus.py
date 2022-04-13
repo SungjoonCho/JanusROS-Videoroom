@@ -258,79 +258,28 @@ async def run(player, recorder, room, session):
 
     
     print("Exchanging media")
-    # exchange media for 10 minutes
+    # exchange media for 60 minutes
     await asyncio.sleep(3600)
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Janus")
 
     # parser.add_argument("url", help="Janus root URL, http://localhost:8088/janus")
     url = "http://localhost:8088/janus"
 
-    parser.add_argument(
-        "--room",
-        type=int,
-        default='1234',
-        help="The video room ID to join (default: 1234).",
-    ),
-    parser.add_argument("--play-from", help="Read the media from a file and sent it."),
-    parser.add_argument("--record-to", help="Write received media to a file."),
-    parser.add_argument("--verbose", "-v", action="count")
-    args = parser.parse_args()
-
-    if args.verbose:
-        logging.basicConfig(level=logging.DEBUG)
-
     # create signaling and peer connection
     session = JanusSession(url)
 
-    # create media source
-    #if args.play_from:
-    #    player = MediaPlayer(args.play_from)
-    #else:
-    #    player = None
-    #    print('Media None')
-
-
-
-    # just publishing webcam
-    # options = {"framerate": "30", "video_size": "640x480"}
-    # player = MediaPlayer("/dev/video0", format="v4l2", options=options)
-
-    # just publishing test video
-    # player = MediaPlayer('/home/jskimlab/Desktop/aiortc_ex/examples/janus/test1.mp4')
-
-    #rtsp : success
-    # player = MediaPlayer("rtsp://0.0.0.0:8554/back")
-
-    #gstreamer case 1 : fail 
-    # player = MediaPlayer("http://127.0.0.1:5000/") 
-
-    # #gstreamer case2 : fail
-    # player = MediaPlayer('/dev/tty1', format='v4l2') 
-
     player = False
-
-    
-
-
-    
-
-    # create media sink
-    if args.record_to:
-        recorder = MediaRecorder(args.record_to)
-    else:
-        recorder = None
+    recorder = False
+    room_num = '1234' # you can use another room num if you created another specific room.
 
     loop = asyncio.get_event_loop()
     try:
         loop.run_until_complete(
-            run(player=player, recorder=recorder, room=args.room, session=session)
+            run(player=player, recorder=recorder, room=room_num, session=session)
         )
         loop.run_forever()
-        # print('ros spin')
-        # rospy.spin() ## ROS
         
     except KeyboardInterrupt:
         pass
