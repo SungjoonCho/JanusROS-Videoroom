@@ -69,6 +69,8 @@
   <p align="center">
       <img width="700" src="https://user-images.githubusercontent.com/80872528/163103632-c08d37ed-72af-4445-99d1-daac8609d41e.png">
   </p>
+  
+  [More information](https://github.com/ken107/janus-videoroom-js)
 
 ## 3. More feature
 
@@ -89,7 +91,7 @@
   * https://janus.conf.meetecho.com/docs/videoroom.html
   * https://janus.conf.meetecho.com/docs/JS.html
   * https://github.com/aiortc/aiortc/tree/28cf22c2a82136784cc8ece6ca82143afdba5c86/examples/videostream-cli
-  * https://github.com/ken107/janus-videoroom-js
+  
 
 Janus API documentation helps how to use and write Janus API with json. 
   
